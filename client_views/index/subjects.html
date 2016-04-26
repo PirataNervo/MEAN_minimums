@@ -1,0 +1,9 @@
+<h2>Subjects List</h2>
+<div class="row">
+	Filter by name: <input type="text" class="form-control" placeholder="Search here..." ng-model="searchText" style="width: 30%" /><br />
+</div>
+<div class="row">
+	<ul>
+		<li ng-repeat="subject in subjects | orderBy:'name' | filter:searchText"><a href="#/subject/{{ subject._id }}">{{ subject.name }}</a></li>
+	</ul>
+</div>

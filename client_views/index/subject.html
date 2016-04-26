@@ -1,0 +1,29 @@
+<h2>{{ subject.name }}</h2>
+<div class="row">
+	Filter by name: <input type="text" class="form-control" placeholder="Search here..." ng-model="searchText" style="width: 30%" /><br />
+</div>
+<div class="row">
+	<ul>
+		<li ng-repeat="student in subject.students | orderBy:'name' | filter:searchText"><a href="#/student/{{ student._id }}">{{ student.name }}</a></li>
+	</ul>
+</div>
+<div class="row">
+<h2>Add Student to Class</h2>	
+	<div ng-show="assignError" class="alert alert-danger row">
+		<span>{{ assignError.message }}</span>
+	</div>
+	
+	<div ng-show="assignSuccess" class="alert alert-success row">
+		<span>{{ assignSuccess.message }}</span>
+	</div>
+	
+	<form ng-submit="assignStudent(subject._id)">
+		<div class="form-group">
+			<label for="students">Students</label>
+			<select name="students[]" class="form-control" id="students" ng-model="formStudent">
+				<option ng-repeat="student in students" value="{{ student._id }}">{{ student.name }}</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-default">Add</button>
+	</form>
+</div>

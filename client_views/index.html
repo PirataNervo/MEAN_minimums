@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Minimos" ng-controller="MainController">
+
+<head>
+    <title>Minimos 1</title>
+	
+	<!-- Bootstrap Core CSS -->
+    <link href="js/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+			<h1><a href="#/index">Class Management</a></h1>
+		</div>
+		<div class="row">
+			<div class="col-xs-9 col-md-6">
+				<div class="col-md-12"> <!-- Used to add padding between our virtual columns -->
+					<div ng-view></div>
+				</div>
+			</div>
+			<div class="col-xs-9 col-md-6">
+				<div class="col-md-12" ng-controller="StudentController"> <!-- Used to add padding between our virtual columns -->
+					<h2>Add Student</h2>
+				
+					<div ng-show="error" class="alert alert-danger row">
+						<span>{{ error.message }}</span>
+					</div>
+					
+					<div ng-show="success" class="alert alert-success row">
+						<span>{{ success.message }}</span>
+					</div>
+					
+					<form ng-submit="addStudent()">
+						<div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name"  ng-model="student.name" />
+                        </div>
+						<div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="Address"  ng-model="student.address" />
+                        </div>
+						<div class="form-group">
+                            <label for="subjects">Subjects</label>
+                            <select name="subjects[]" class="form-control" id="subjects"  ng-model="student.subjects" multiple=true>
+								<option ng-repeat="subject in subjects" value="{{ subject._id }}">{{ subject.name }}</option>
+							</select>
+						</div>
+						<div class="form-group">
+                            <label for="address">Mobile Number</label>
+                            <input type="text" class="form-control" id="mobile" placeholder="Mobile Number"  ng-model="student.mobileNumber" />
+                        </div>
+						<div class="form-group">
+                            <label for="address">Home Number</label>
+                            <input type="text" class="form-control" id="home" placeholder="Home Number" ng-model="student.homeNumber" />
+                        </div>
+						<button type="submit" class="btn btn-default">Add</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- jQuery -->
+    <script src="js/libs/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="js/libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/libs/angular-route/angular-route.min.js"></script>
+
+    <!-- Our App -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+</body>
+
+</html>
